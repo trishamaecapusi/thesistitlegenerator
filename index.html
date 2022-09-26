@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Project Title Generator</title>
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        font-family: "Roboto Mono", monospace;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background: linear-gradient(to right, #6a3093 0%, #a044ff 100%);
+      }
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+      .word {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3em;
+        font-weight: bold;
+        text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+        color: #fff;
+      }
+      .top-left {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(5%, 10%);
+        font-size: 1em;
+        color: rgba(255, 255, 255, 0.353);
+      }
+      .bottom-right {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(-5%, -10%);
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.353);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top-left">
+      <p><h3>Press [Space]</h3></p>
+    </div>
+    <div class="bottom-right">
+      <span><h3>This is sample project title by 
+        <bold> Trisha Mae Capusi. </bold>
+          I post this to help you to decide.
+      </span>
+      <span id="title-count">0</span></h3>
+      
+    
+    </div>
+    <div class="word">
+      <h3 id="word"></h3>
+    </div>
+
+    <script type="text/javascript" src="words.js"></script>
+
+      
+
+    <script>
+      const randomGradient = () => { //start of random color
+        const randomColor = () => {
+          const letters = "0123456789ABCDEF";
+          let color = "#";
+          for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+        };
+        const randomGradient = `linear-gradient(to right, ${randomColor()} 0%, ${randomColor()} 100%)`;
+        document.body.style.background = randomGradient; 
+      };
+
+      const title = words.title;// start of random title
+      document.getElementById("title-count").innerHTML = title.length;
+
+      const randomTitle = () => {
+        return title[Math.floor(Math.random() * title.length)];
+      };
+      const randomUsername = () => {
+        let a = randomTitle(randomTitle());
+        return a;
+      };
+
+      const nextWord = () => {
+        document.getElementById("word").innerHTML = randomUsername();
+        randomGradient();
+      };
+
+      nextWord();
+
+      document.addEventListener("keypress", (e) => {
+        if (e.key === " ") {
+          nextWord();
+        }
+      });
+    </script>
+  </body>
+</html>
